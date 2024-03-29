@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Have a good day</title>
+		<!-- <meta http-equiv="Content-Type" content="charset=utf-8" /> -->
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/my_name.css"></link>
+		<script src="jsl/low_level.js"></script>
+		<script src="jsl/main.js"></script>
+	</head>
+	<body>
+		<div class="root_elem">
+			<div class="bookmark cnt"></div>
+			<dialog class="modal add">
+
+				<div class="modal text header">Adding bookmark</div>
+				<div class="modal input-box">
+					<div class="modal text">Name</div>
+					<input class="modal input" type="text" name="nme">
+				</div>
+				<div class="modal input-box">
+					<div class="modal text">URL</div>
+					<input class="modal input" type="text" name="url">
+				</div>
+				<div class="modal input-box">
+					<div class="modal text">Image source</div>
+					<input class="modal input" type="text" name="img">
+				</div>
+
+
+				<div class="modal footer">
+					<div class="modal button cancel">Cancel</div>
+					<div class="modal button save">Save</div>
+				</div>
+			</dialog>
+			<dialog class="modal delete">
+				<div class="modal text">Do you want to delete a bookmark?</div>
+				<div class="modal footer">	
+					<div class="modal button cancel">Cancel</div>
+					<div class="modal button delete">Delete</div>
+				</div>
+			</dialog>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,411 @@
+/* ----------------------------------------------------------------------------------------------------------------------------------------------- */
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s,
+samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+	margin			: 0;
+	padding			: 0;
+	border			: 0;
+	outline			: none;
+}
+
+/* ----------------------------------------------------------------------------------------------------------------------------------------------- */
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+ol, ul { list-style: none; }
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+strong { font-weight: bold; } 
+input { outline: none; }
+table { border-collapse: collapse; border-spacing: 0; }
+img { border: 0; max-width: 100%; }
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+.clearfix:before, .clearfix:after { content: " ";display: table;}
+.clearfix:after { clear: both;}
+.clearfix {*zoom: 1;}
+
+/* ----------------------------------------------------------------------------------------------------------------------------------------------- */
+
+body {
+	position		: absolute;
+	top				: 0;
+	bottom			: 0;
+	left			: 0;
+	right			: 0;
+	width			: 100%;
+	height			: 100%;
+	margin			: 0;
+	padding			: 0;
+}
+
+
+* {
+	text-rendering				: optimizeLegibility;
+	letter-spacing				: 0px;
+	font-kerning				: normal;
+	
+	color						: #000000;
+	outline						: none;
+	
+	-webkit-user-select			: none;
+	-moz-user-select			: none;
+	user-select					: none;
+	
+	cursor						: default;
+
+}
+
+a {
+	text-decoration: none !important;
+}
+
+/* ------------------------------ ----------------------------------------------------------------------------------------------------------------- */
+
+/* FONTS */
+
+@font-face {
+	font-family: "MuseoModerno";
+	font-style: normal;
+	font-weight: 400;
+	/* Браузер сначала попробует найти шрифт локально */
+	src: local("MuseoModerno"),
+		 /* Если не получилось, загрузит woff2 */
+		 url("/fonts/museo_moderno.ttf") format("ttf")
+}
+
+
+/* ------------------------------ ----------------------------------------------------------------------------------------------------------------- */
+
+:root {
+	--bookmark-cnt-col-num		: 6;
+	--bookmark-cnt-width		: 52em; 
+	--bookmark-cnt-row-gap		: 1em;
+	
+	--color-polar-night-1		: #2E3440;
+	--color-polar-night-2		: #3b4252;
+	--color-polar-night-3		: #434C5E;
+	--color-polar-night-4		: #4C566A;
+	
+	--color-snow-storm-1		: #D8DEE9;
+	--color-snow-storm-2		: #E5E9F0;
+	--color-snow-storm-3		: #ECEFF4;
+
+	--color-frost-3				: #81A1C1;
+	--color-aurora-red			: #BF616A;
+
+	--font-family-mono			: 'MuseoModerno', 'Courier New', Courier, monospace;
+	--duration-modal-transition : 0.3s
+}
+
+/* ------------------------------ ----------------------------------------------------------------------------------------------------------------- */
+
+body {
+	/* font-family: monospace; */
+	/* display			: flex;
+	align-items		: center;
+	justify-content	: center; */
+}
+
+input {
+	
+	background-color	: var(--color-polar-night-4);
+	border				: 0;
+	border-radius		: 0.3em;
+	color				: var(--color-snow-storm-1);
+	padding-left		: 0.5em;
+	padding-top			: 0.3em;
+	padding-bottom		: 0.3em;
+}
+input[type="text"] {
+	cursor: text;
+}
+
+.button {
+	cursor: pointer;
+}
+
+.root_elem {
+	display						: flex;
+	align-items					: center;
+	justify-content				: center;
+
+	width						: 100%;
+	height						: 100%;
+
+	background					: var(--color-polar-night-1);
+}
+
+.bookmark.cnt {
+	display						: flex;
+	flex-wrap					: wrap;
+	flex-direction				: row;
+	row-gap						: var(--bookmark-cnt-row-gap);
+
+	min-height					: 12em;
+	width  						: var(--bookmark-cnt-width);
+	padding						: 2em 1em 2em 2em;
+	border-radius				: 1em;
+	
+	background-color			: var(--color-polar-night-2);
+	box-shadow					: 0px 6px 10px 1px #1e242f;
+}
+.bookmark.item {
+	display						: flex;
+	position					: relative;
+	flex-direction				: column;
+	align-items					: center;
+	justify-content				: center;
+
+	box-sizing					: border-box;
+	margin-right				: 1em;
+	height						: 6em;
+	width						: 12em;
+	
+	background-color			: var(--color-polar-night-3);
+	border-radius				: 0.5em;
+	box-shadow					: 0px 6px 10px 1px var(--color-polar-night-1);
+	cursor						: pointer;
+	transition					: all 0.3s ease-out;
+}
+
+.bookmark.item:hover {
+	z-index						: 1;
+	scale						: 1.1;
+	box-shadow					: 0px 6px 10px 1px #1e242f;
+
+	background-color			: var(--color-polar-night-4);
+	transition					: all 0.3s ease-out;
+}
+
+.bookmark.item.add > div {
+	color						: var(--color-snow-storm-1);
+	font-size: 6em;
+	font-weight: bolder;
+	transition					: all 0.3s ease-out;
+}
+.bookmark.item.add:hover > div {
+	color						: var(--color-snow-storm-3);
+	transition					: all 0.3s ease-out;
+}
+
+.bookmark.item * {
+	cursor						: pointer;
+}
+
+.bookmark.image {
+	flex-grow					: 1;
+
+	display						: flex;
+	justify-content				: center;
+	align-items					: center;
+}
+
+.bookmark.image > img {
+	filter						: invert(1);
+	-webkit-filter				: invert(1);
+	height						: 4em;
+}
+
+.bookmark.item > .caption {
+	/* position					: absolute; */
+	flex-grow					: 1;
+	display						: flex;
+	align-items					: center;
+	text-align					: center;
+	vertical-align				: middle;
+}
+
+.bookmark.item > .caption > .cpt_txt {
+	font-family					: var(--font-family-mono);
+	font-weight					: 600;
+	color						: var(--color-snow-storm-1);
+}
+.bookmark.item:not(:has(img)) > .caption > .cpt_txt {
+	font-size: xx-large;
+}
+
+.bookmark.item .delete {
+	display						: block;
+	box-sizing					: border-box;
+	position					: absolute;
+	top							: 5px;
+	right						: 5px;
+
+	transform					: scale(var(--ggs,1));
+	width						: 22px;
+	height						: 22px;
+	background-color			: var(--color-polar-night-3) transparent;
+	border						: 2px solid transparent;
+	border-radius				: 40px;
+	opacity						: 0;
+	transition					: all 0.3s ease-out;
+	
+}
+
+.bookmark.item .delete::after,
+.bookmark.item .delete::before {
+	content						: "";
+	display						: block;
+	box-sizing					: border-box;
+	position					: absolute;
+	width						: 16px;
+	height						: 2px;
+	background					: var(--color-snow-storm-1);
+	transform					: rotate(45deg);
+	border-radius				: 5px;
+	top							: 8px;
+	left						: 1px;
+}
+
+.bookmark.item:hover .delete{
+	transition			: all 0.3s ease-out;
+	opacity				: 0.4;
+}
+.bookmark.item .delete:hover{
+	background-color	: var(--color-polar-night-3);
+	transition			: all 0.12s ease-out;
+	opacity				: 1;
+}
+
+.bookmark.item .delete::after {
+	transform	: rotate(-45deg)
+}
+
+dialog.modal {
+
+	background-color			: var(--color-polar-night-2);
+	border						: 0;
+	overflow					: hidden;
+	opacity						: 0;
+	scale						: 0.5;
+	transition-property 		: all;
+	transition-duration			: var(--duration-modal-transition);
+	transition-timing-function	: ease-out;
+}
+dialog.modal::backdrop {
+	background					: black;
+	transition-property 		: all;
+	transition-duration			: var(--duration-modal-transition);
+	transition-timing-function	: ease-out;
+	opacity						: 0;
+}
+
+dialog.modal.shown {
+	opacity						: 1;
+	scale						: 1;
+	transition					: all ease-out;
+	transition-duration			: var(--duration-modal-transition);
+}
+dialog.modal.shown::backdrop {
+	opacity						: 0.3;
+	transition					: all ease-out;
+	transition-duration			: var(--duration-modal-transition);
+}
+
+.modal.footer {
+	height				: 2em;
+	display				: flex;
+	justify-content		: flex-end;
+	gap					:1em
+}
+.modal.button {
+	height				: 2em;
+	width				: 6em;
+	text-align			: center;
+	line-height			: 2em;
+	vertical-align		: middle;
+	font-family			: var(--font-family-mono);
+	color				: var(--color-snow-storm-3);
+}
+.modal.button::before {
+	content				: "";
+	display				: block;
+	position			: absolute;
+	z-index				: -1;
+	height				: 2em; 
+	width				: 6em; 
+	
+	background-color: var(--color-polar-night-4);
+	border-radius		: 0.25em;
+	opacity				: 0;
+	transition			: all 0.3s ease-out;
+}
+.modal.button:hover::before {
+	opacity				: 0.5;
+	transition			: all 0.15s ease-out;
+}
+.modal.button:active::before {
+	opacity				: 1;
+}
+.modal.text.header {
+	font-size			: large;
+	margin-bottom		: 1em;
+}
+.modal.input-box {
+	width				: 100%;
+	margin-bottom		: 1em;
+
+}
+.modal.input-box > .text {
+	margin-bottom		: 0.5em;
+}
+
+.modal.input-box > input {
+	width				: inherit;
+	box-sizing			: border-box;
+	font-family			: var(--font-family-mono);
+	font-size			: large;
+
+}
+
+dialog.modal.add {
+	height				: 18em;
+	width				: 33em;
+
+	border-radius		: 0.7em;
+}
+dialog.modal.add .text{
+	font-family			: var(--font-family-mono);
+	color				: var(--color-snow-storm-3);
+}
+
+.modal.button.save 				{ color: var(--color-frost-3);}
+.modal.button.save:hover::before 	{ 
+	background-color: var(--color-frost-3);
+	opacity: 0.2;
+}
+.modal.button.save:active 		{ color: var(--color-polar-night-2);}
+.modal.button.save:active::before {
+	background-color: var(--color-frost-3);
+	opacity			: 1;
+}
+
+dialog.modal.delete {
+	height				: 6em;
+	width				: 18em;
+
+	border-radius		: 0.5em;
+}
+dialog.modal.delete * {
+	font-family			: var(--font-family-mono);
+	color				: var(--color-snow-storm-3);
+}
+dialog.modal.delete > .modal.text {
+	height				: 3em;
+	width				: 100%;
+	margin-bottom		: 1em;
+}
+
+.modal.button.delete 				{ color: var(--color-aurora-red);}
+.modal.button.delete:hover::before 	{ 
+	background-color: var(--color-aurora-red);
+	opacity: 0.2;
+}
+.modal.button.delete:active 		{ color: var(--color-polar-night-2);}
+.modal.button.delete:active::before {
+	background-color: var(--color-aurora-red);
+	opacity			: 1;
+}
+
+/* ------------------------------ ----------------------------------------------------------------------------------------------------------------- */
